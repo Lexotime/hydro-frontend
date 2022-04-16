@@ -7,7 +7,13 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"
+      integrity="sha512-uLlukEfSLB7gWRBvzpDnLGvzNUluF19IDEdUoyGAtaO0MVSBsQ+g3qhLRL3GTVoEzKpc24rVT6X1Pr5fmsShBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script>
       tailwind.config = {
         theme: {
@@ -46,14 +52,16 @@
             </svg>
           </span>
         </div>
-        <div class="my-2 px-3 py-1 bg-lightdark py-1">
+        <div class="my-2 px-3 py-1 bg-lightdark  py-1">
           <p class="text-secondary py-2">TABLE HYDROPHONE</p>
-          <div class="flex  flex-col space-y-4 py-3 h-screen">
-           <a href="#prevision" class="text-gray-300 py-2 pl-[45px]">PREVISION</a>
-           <a href="#visualisation" class="text-gray-300 py-2 pl-[45px]">VISUALISATION</a>
-          
-           
-             
+          <div class="flex flex-col space-y-4 py-3 h-screen sticky">
+            <a href="#prevision" class="text-gray-300 py-2 pl-[45px]"
+              >PREVISION</a
+            >
+            <a href="#visualisation" class="text-gray-300 py-2 pl-[45px]"
+              >VISUALISATION</a
+            >
+            <a href="#espece" class="text-gray-300 py-2 pl-[45px]">ESPECES</a>
           </div>
         </div>
       </div>
@@ -67,7 +75,7 @@
               name=""
               id=""
             />
-            <span class="relative bottom-6 left-[220px] ">
+            <span class="relative bottom-6 left-[220px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-4 w-4"
@@ -87,12 +95,7 @@
           <div class="flex justify-between items-center space-x-1 py-1">
             <span class="material-icons text-secondary"> notifications </span>
             <div class="flex justify-between items-center">
-              <img
-                class="rounded-full"
-                src="./honey-jar-free-img.jpg"
-                style="width: 30px; height: 30px"
-                alt=""
-              />
+             
               <p class="px-1 text-white">Abdourahmane Lo</p>
               <span
                 ><svg
@@ -113,56 +116,102 @@
           </div>
         </div>
         <div
-        class="m-2 px-3 h-[50px] py-1 bg-lightdark flex justify-between items-center py-1"
-      >
-        <p id="prevision" class="text-secondary font-medium text-[18px]">PREVISIONS</p>
-       
-      </div>
-      <table class="w-full   ">
-        <thead class="bg-bolddark">
+          class="m-2 px-3 h-[50px] py-1 bg-lightdark flex justify-between items-center py-1"
+        >
+          <p id="prevision" class="text-secondary font-medium text-[18px]">
+            PREVISIONS
+          </p>
+        </div>
+        <table class="w-full">
+          <thead class="bg-bolddark">
             <tr>
-                <th class=" font-normal text-gray-300">ID</th>
-              
-                <th class=" font-normal text-gray-300">HEURE</th>
-                <th class=" font-normal text-gray-300">TEMPERATURE(°C)</th>
-                <th class=" font-normal text-gray-300">HUMIDITE(A)</th>
-                <th class="  font-normal text-gray-300"><svg xmlns="http://www.w3.org/2000/svg" class="h-2 mx-auto w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                  </svg></th>
+              <th class="font-normal text-gray-300">ID</th>
+
+              <th class="font-normal text-gray-300">HEURE</th>
+              <th class="font-normal text-gray-300">TEMPERATURE(°C)</th>
+              <th class="font-normal text-gray-300">HUMIDITE(A)</th>
+              <th class="font-normal text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-2 mx-auto w-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                  />
+                </svg>
+              </th>
             </tr>
-        </thead>
-        <tbody class="text-[14px]">
-            <tr class="w-full border-b-[10px] border-bolddark bg-gray-500">
-                <td class=" text-white text-center text-[14px] py-2">1</td>
-                <td class=" text-white text-center py-2 ">12:00</td>
-                <td class=" text-white text-center py-2">39</td>
-                
-                <td class=" text-white text-center py-2 ">5</td>
-               
-        </tbody>
-      </table>
+          </thead>
+          <tbody class="text-[14px]">
+            <tr class="w-full border-b-[10px] border-bolddark bg-gray-500" *ngFor="let d of donnees">
+              <td class="text-white text-center text-[14px] py-2">{{d._id}}</td>
+              <td class="text-white text-center py-2">{{d.created_at}}</td>
+              <td class="text-white text-center py-2">{{d.temperature}}</td>
+
+              <td class="text-white text-center py-2">{{d.humidite}}</td>
+            </tr>
+          </tbody>
+        </table>
         <div
           class="m-2 px-3 h-[50px] py-1 bg-lightdark flex justify-between items-center py-1"
         >
-          <p id="visualisation" class="text-secondary font-medium text-[18px]">VISUALISATION DES DONNEES</p>
-         
+          <p id="visualisation" class="text-secondary font-medium text-[18px]">
+            VISUALISATION DES DONNEES
+          </p>
         </div>
 
-        <div class="flex ">
+        <div class="flex">
+          <div
+            class="w-[50%] mx-2 flex items-center justify-center bg-lightdark px-2 py-2 shadow-lg flex space-x-2"
+          >
+            <canvas
+              id="temperature"
+              style="width: 100%; max-width: 1000px"
+            ></canvas>
+          </div>
 
+          <div
+            class="w-[50%] mx-2 flex items-center justify-center bg-lightdark px-2 py-2 shadow-lg flex space-x-2"
+          >
+            <canvas
+              id="humidite"
+              style="width: 100%; max-width: 1000px"
+            ></canvas>
+          </div>
+        </div>
         <div
-          class="w-[50%]  mx-2 flex items-center justify-center bg-lightdark px-2 py-2 shadow-lg flex space-x-2"
+          class="m-2 px-3 h-[50px] py-1 bg-lightdark flex justify-between items-center py-1"
         >
-          <canvas id="temperature" style="width: 100%; max-width: 1000px"></canvas>
+          <p id="prevision" class="text-secondary font-medium text-[18px]">
+            ESPECES
+          </p>
         </div>
-
-        <div
-        class="w-[50%]  mx-2 flex items-center justify-center bg-lightdark px-2 py-2 shadow-lg flex space-x-2"
-      >
-        <canvas id="humidite" style="width: 100%; max-width: 1000px"></canvas>
-      </div>
-    </div>
-        
+        <table class="w-full   ">
+          <thead class="bg-bolddark">
+              <tr>
+                  <th class=" font-normal text-gray-300">ESPECES</th>
+                
+                  <th class=" font-normal text-gray-300">FREQUENCE</th>
+                
+                  <th class="  font-normal text-gray-300"><svg xmlns="http://www.w3.org/2000/svg" id="espece" class="h-2 mx-auto w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                    </svg></th>
+              </tr>
+          </thead>
+          <tbody class="text-[14px]">
+              <tr class="w-full border-b-[10px] border-bolddark bg-gray-500">
+                  <td class=" text-white text-center text-[14px] py-2">POISSONS</td>
+                  <td class=" text-white text-center py-2 ">140 hz</td>
+                
+                 
+          </tbody>
+        </table>
       </div>
     </div>
   </body>
